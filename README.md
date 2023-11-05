@@ -3,7 +3,7 @@
 (In Progress) Popular mobile game Flappy Bird developed in Java using AWT and Swing library.
 
 
-## Features
+## Highlights
 
 - Flappy Bird game developed in Java, following object-oriented programming (OOP) principles.
 - Game mechanics including collision detection and scoring for an engaging gaming experience.
