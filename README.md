@@ -12,4 +12,4 @@
 
 
 ## How to Play
-Click or tap anywhere on the screen to gain altitude. Navigate the bird through the gaps between the pipes. Avoid colliding with the ground or the pipes. Try to achieve the highest score possible by passing through as many pipes as you can.
+Click or tap anywhere on the screen to gain altitude. Navigate through the gaps between the pipes. Avoid colliding with the ground or the pipes. Try to achieve the highest score possible by passing through as many pipes as you can.
