@@ -34,12 +34,33 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
         }
     }
 
+    class Pipe {
+        int width = 64; //scaled by 1/6
+        int height = 512;
+        int xPos;
+        int yPos;
+        Image img;
+        boolean passed = false; //To keep track of score
+
+        //Constructor
+        public Pipe(Image img){
+            this.img = img;
+            this.xPos = screenWidth;
+            this.yPos = 0;
+        }
+    }
+
+
     //Game Logic
     Bird bird;
-    int velocityY = 0;
+    int velocityX = -4; //Move pipes to the left, simulating bird moving right
+    int velocityY = 0; //Move bird up/down
     int gravity = 1;
 
+    ArrayList<Pipe> pipes;
+
     Timer gameLoop;
+    Timer placePipesTimer;
 
 
     //Constructor
@@ -60,13 +81,31 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
         topPipeImage = new ImageIcon(getClass().getResource("./images/toppipe.png")).getImage();
         bottomPipeImage = new ImageIcon(getClass().getResource("./images/bottompipe.png")).getImage();
     
-        //Instantiating the bird object
+        //Instantiating the bird and the pipe list
         bird = new Bird(birdImage);
+        pipes = new ArrayList<Pipe>();
 
         //game timer
         gameLoop = new Timer(1000/60, this); //for 60fps
         gameLoop.start();
+
+        //place pipes timer
+        //Every 1.5s placePipes() is called which adds a new Pipe to the pipelist
+        placePipesTimer = new Timer(1500, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                placePipes();
+            }
+        });
+        placePipesTimer.start();
     }
+
+    //Add a new pipe to the pipe list
+    public void placePipes(){
+        Pipe topPipe = new Pipe(topPipeImage);
+        pipes.add(topPipe);
+    }
+
 
     @Override
     public void paintComponent(Graphics g){
@@ -81,6 +120,12 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
         
         //Bird
         g.drawImage(birdImage, bird.xPos, bird.yPos, bird.width, bird.height, null);
+    
+        //Pipes
+        for(int i=0; i<pipes.size(); i++){
+            Pipe pipe = pipes.get(i);
+            g.drawImage(pipe.img, pipe.xPos, pipe.yPos, pipe.width, pipe.height, null);
+        }
     }
 
     public void move(){
@@ -91,6 +136,13 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
         bird.yPos += velocityY;
         //Make sure the bird does not go off the screen (the top of the screen was marked as 0)
         bird.yPos = Math.max(bird.yPos, 0);
+
+        //pipes
+        //Add a velocity to each pipe, moving them to the left, simulating bird moving right
+        for(int i=0; i<pipes.size(); i++){
+            Pipe pipe = pipes.get(i);
+            pipe.xPos += velocityX;
+        }
     }
 
     //ActionListener methods
