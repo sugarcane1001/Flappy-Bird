@@ -19,15 +19,9 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
     Image topPipeImage;
     Image bottomPipeImage;
 
-    //Bird
-    /*int birdXPos = screenWidth/8;
-    int birdYPos = screenHeight/2;
-    int birdWidth = 34;
-    int birdHeight = 24;*/
-
     class Bird {
-        int width = 34;//birdWidth;
-        int height = 24;//birdHeight;
+        int width = 34; //birdWidth;
+        int height = 24; //birdHeight;
         int xPos;
         int yPos;
         Image img;
@@ -56,6 +50,7 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
 
         setPreferredSize(new Dimension(screenWidth, screenHeight));
         
+        //So the JPanel (FlappyBird class) is focusable to receive keyboard events
         setFocusable(true);
         addKeyListener(this);
 
@@ -65,7 +60,7 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
         topPipeImage = new ImageIcon(getClass().getResource("./images/toppipe.png")).getImage();
         bottomPipeImage = new ImageIcon(getClass().getResource("./images/bottompipe.png")).getImage();
     
-        //Instantiating bird object
+        //Instantiating the bird object
         bird = new Bird(birdImage);
 
         //game timer
@@ -81,7 +76,6 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
     }
 
     public void draw(Graphics g){
-        //System.out.println("draw");
         //Background
         g.drawImage(backgroundImage, 0, 0, screenWidth, screenHeight, null);
         
@@ -91,24 +85,33 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
 
     public void move(){
         //bird
-        velocityY += gravity;
+        //Gravity will pull the bird down
+        velocityY += gravity; 
+        //Update the bird's vertical position by adding the current velocity to it
         bird.yPos += velocityY;
+        //Make sure the bird does not go off the screen (the top of the screen was marked as 0)
         bird.yPos = Math.max(bird.yPos, 0);
     }
 
-    //ActionListener
+    //ActionListener methods
     @Override
     public void actionPerformed(ActionEvent e){
+        //Update the bird's position by calling the move method
         move();
+        //Repaint the component, which will call the paintComponent method
+        //This ensures the screen is updated with the bird's new position
         repaint();
     }
 
-    //KeyListener
+    //KeyListener methods
+    //For keys involving characters
     @Override
     public void keyTyped(KeyEvent e) {}
 
+    //For all keys, including non-character keys like space bar
     @Override
     public void keyPressed(KeyEvent e) {
+        //If the player presses the space bar, the velocity is updated in the upward direction
         if(e.getKeyCode() == KeyEvent.VK_SPACE) {
             velocityY = -9;
         }
@@ -117,5 +120,3 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {}
 }
-
-
