@@ -23,25 +23,25 @@ Welcome to the Flappy Bird game implemented in Java! This project is a simple ye
 
 1. **Clone the repository:**
 
-    ```bash
+    ```
     git clone https://github.com/sugarcane1001/Flappy-Bird.git
     ```
 
 2. **Navigate to the project directory:**
 
-    ```bash
+    ```
     cd Flappy-Bird
     ```
 
 3. **Compile the code:**
 
-    ```bash
+    ```
     javac App.java
     ```
 
 4. **Run the game:**
 
-    ```bash
+    ```
     java App
     ```
 
