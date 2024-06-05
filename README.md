@@ -11,8 +11,6 @@ Welcome to the Flappy Bird game implemented in Java! This project is a simple ye
 - [Controls](#controls)
 - [Screenshots](#screenshots)
 - [Video](#video)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 
@@ -32,7 +30,7 @@ Welcome to the Flappy Bird game implemented in Java! This project is a simple ye
 2. **Navigate to the project directory:**
 
     ```bash
-    cd flappy-bird-java
+    cd Flappy-Bird
     ```
 
 3. **Compile the code:**
@@ -62,8 +60,8 @@ The objective of the game is to navigate the bird through a series of pipes with
 
 ## Screenshots
 
-![Game Start](./images/screenshot1.png)
+<img src="./src/images/gamelogic.png" alt="Game Logic" width="300"/>
 
 ## Video
 
-[![Flappy Bird Gameplay](./images/video-thumbnail.png)](https://www.youtube.com/watch?v=your-video-url)
+[![Alt text](https://img.youtube.com/vi/0zAMUDQgWbo/0.jpg)](https://www.youtube.com/watch?v=0zAMUDQgWbo)
